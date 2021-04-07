@@ -30,21 +30,50 @@ function fetchBreed(webRespond) {
 }
 // Adds Image Elements to DOM tags
  document.addEventListener('DOMContentLoaded', function () {
-  //iterate through the gameDeck array.
   for (let x = 0;x < imgUrl.length;x++){
-    //create an img tag for each gameDeck element
     let imgElem = document.createElement("img"); 
-    //set the source of the img tag to be the current gameDeck element (which will be a URI of a png file)
     imgElem.src = imgUrl[x];
-
-    //target the div with id "card(x + 1)" 
+ 
     let imgID = "image" + (x + 1);
      let imgDogs = document.getElementById(imgID);
-
-    //append the img tag to the card element
     cardElement.appendChild(imgElem);   
   } 
-  //log the HTML to the console to check it
   console.log(document.getElementById('body').innerHTML);
 });
 
+// Adds Breeds to Page in a List
+let dogBreeds2 = ['Afghan', 'Basset Hound'];
+let ul = document.getElementById("dog-breeds");
+
+for (let i = 0; i < dogBreeds2.length; i++) {
+    let allBreeds = dogBreeds2[i];
+    let li = document.createElement('li');
+    li.appendChild(document.createTextNode(allBreeds));
+    ul.appendChild(li);
+}
+
+//Change Color of List Items
+let  listBreeds = document.querySelectorAll('#dog-breeds li');
+listBreeds.forEach(function (listBreed) {
+  listBreed.addEventListener('click', function () {
+    this.style.color = 'yellow';
+  });
+});
+
+//Filter Breeds by Starting Letter
+function sortBreeds() {
+  let allInput, allFilter, ul, li, a, i, value;
+  allInput = document.getElementById('myInput');
+  allFilter = allInput.value.toUpperCase();
+  ul = document.getElementById("dog-breeds");
+  li = ul.getElementsByTagName('li');
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    value = a.textContent || a.innerText;
+    if (value.toUpperCase().indexOf(allFilter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}

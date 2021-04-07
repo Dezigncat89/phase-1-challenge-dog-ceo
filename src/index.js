@@ -63,7 +63,7 @@ listBreeds.forEach(function (listBreed) {
 //Filter Breeds by Starting Letter
 function sortBreeds() {
   let allInput, allFilter, ul, li, a, i, value;
-  allInput = document.getElementById('myInput');
+  allInput = document.getElementById('breed-dropdown');
   allFilter = allInput.value.toUpperCase();
   ul = document.getElementById("dog-breeds");
   li = ul.getElementsByTagName('li');
